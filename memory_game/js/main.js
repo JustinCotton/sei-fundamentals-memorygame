@@ -19,24 +19,54 @@ var cards = [
 	}
 ];
 var cardsInPlay = [];
+var wins = 0;
+var losses = 0;
 
 var checkForMatch = function() {
-	if (cardsInPlay[0] === cardsInPlay[1]  + ".") {
+	if (cardsInPlay[0] === cardsInPlay[1]) {
 		alert("You found a match!");
+		wins++;
+		document.getElementById('yourWins').innerHTML = wins;
+		console.log("Wins: " + wins);
 	} else {
 		alert("Sorry, try again.");
+		losses++;
+		document.getElementById('yourLosses').innerHTML = losses;
+		console.log("Losses: " + losses);
 	}
 }
 
-var flipCard = function(cardId) {
+var flipCard = function() {
+	var cardId = this.getAttribute('data-id');
 	console.log("User flipped " + cards[cardId].rank + ".");
 	cardsInPlay.push(cards[cardId].rank);
-	console.log(cards[cardId].cardImage)
-	console.log(cards[cardId].suit)
+	console.log(cards[cardId].cardImage);
+	console.log(cards[cardId].suit);
+	this.setAttribute('src', cards[cardId].cardImage);
 	if (cardsInPlay.length === 2) {
 		checkForMatch();
 	}
 }
 
-flipCard(0);
-flipCard(2);
+var createBoard = function () {
+	for (var i=0; i < cards.length; i++) {
+		var cardElement = document.createElement('img');
+		cardElement.setAttribute('src', 'images/back.png');
+		cardElement.setAttribute('data-id', i);
+		cardElement.addEventListener('click', flipCard);
+		document.getElementById('game-board').appendChild(cardElement);
+	}
+}
+
+createBoard();
+
+var resetCards = function () {
+	console.log("Let's reset!");
+	for (var j=0; j < cards.length; j++) {
+		var cardsAfter = document.getElementsByTagName('img')[j];
+		cardsAfter.setAttribute('src', 'images/back.png');
+	}
+	cardsInPlay = []
+}
+
+document.getElementsByTagName('button')[0].addEventListener('click', resetCards);

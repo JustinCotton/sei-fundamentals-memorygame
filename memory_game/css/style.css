@@ -75,6 +75,18 @@ footer {
 	font-weight: 500;
 }
 
+button {
+	background-color: #F15B31;
+	color: #FFFFFF;
+	font-family: Raleway;
+	letter-spacing: 1px;
+	padding: 10px;
+	font-weight: 600;
+	font-size: 20px;
+	text-transform: uppercase;
+	float: right;
+}
+
 .copyright, .message {
 	font-family: 'Raleway';
 }
@@ -98,4 +110,20 @@ footer {
 
 .name {
 	color: #F15B31;
+}
+
+.score {
+	border: black solid 3px;
+	font-size: 30px;
+	padding: 5px;
+	font-family: 'Raleway';
+	float: left;
+	margin: 10px 30px;
+}
+
+.scorewords {
+	float: left;
+	font-family: "Droid Serif";
+	line-height: 24px;
+	font-size: 18px;
 }
